@@ -2,7 +2,7 @@ package data.mongo.entity;
 
 import org.springframework.data.annotation.Id;
 
-public class Employee {
+public class EmployeeMongoModel {
 
     @Id
     private String id;
@@ -11,10 +11,10 @@ public class Employee {
 
     private String lastName;
 
-    public Employee() {
+    public EmployeeMongoModel() {
     }
 
-    public Employee(String firstName, String lastName) {
+    public EmployeeMongoModel(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
