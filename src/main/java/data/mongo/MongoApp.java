@@ -1,7 +1,10 @@
 package data.mongo;
 
+import data.cassandra.CassandraApp;
 import data.mongo.entity.EmployeeMongoModel;
 import data.mongo.repository.EmployeeMongoRepository;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MongoApp implements CommandLineRunner {
+
+    private static final Log logger = LogFactory.getLog(MongoApp.class);
 
     @Autowired
     private EmployeeMongoRepository employeeRepository;
@@ -24,22 +29,22 @@ public class MongoApp implements CommandLineRunner {
         this.employeeRepository.save(new EmployeeMongoModel("Sam", "Alex"));
 
         // fetch all employees
-        System.out.println("Employees found with findAll():");
-        System.out.println("-------------------------------");
+        logger.info("Employees found with findAll():");
+        logger.info("-------------------------------");
         for (EmployeeMongoModel employee : this.employeeRepository.findAll()) {
-            System.out.println(employee);
+            logger.info(employee);
         }
         System.out.println();
 
         // fetch an individual employee
-        System.out.println("Employee found with findByFirstName('Sam'):");
-        System.out.println("--------------------------------");
-        System.out.println(this.employeeRepository.findByFirstName("Sam"));
+        logger.info("Employee found with findByFirstName('Sam'):");
+        logger.info("--------------------------------");
+        logger.info(this.employeeRepository.findByFirstName("Sam"));
 
-        System.out.println("Employee found with findByLastName('Honai'):");
-        System.out.println("--------------------------------");
+        logger.info("Employee found with findByLastName('Honai'):");
+        logger.info("--------------------------------");
         for (EmployeeMongoModel employee : this.employeeRepository.findByLastName("Honai")) {
-            System.out.println(employee);
+            logger.info(employee);
         }
     }
 
